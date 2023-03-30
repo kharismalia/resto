@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin
+
+    </title>
+</head>
+<body>
+    <h1>Welcome to Admin <span></span></h1>
+    <table>
+        <thead>
+            <th>Nama</th>
+            <th>Password</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+  <script>
+    const nama= document.querySelector("span");
+
+    fetch("/api/me")
+    .then((response)=>response.json())
+    .then((admin)=>(nama.textContent=admin.nama));
+
+    fetch("/api/admin")
+    .then((response)=>response.json())
+    .then((mahasiswa)=>{
+        const tbody = document.querySelector("tbody");
+        admin.forEach((m) => {
+            const tr = document.createElement("tr");
+            const tdNama = document.createElement("td");
+            tdNama.textContent=m.nama;
+            tr.appendChild(tdNama);
+            tbody.appendChild(tr);
+        });
+    })
+  </script>
+
+</body>
+</html>
